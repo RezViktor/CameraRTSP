@@ -6,9 +6,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Clientstuff {
-    private ServerSocket serverSocket;
-    private Socket socket;
-    private DataInputStream stream;
+    private static ServerSocket serverSocket;
+    private static Socket socket;
+    private static DataInputStream stream;
     private String gotdata;
 
     public String getGotdata() {
@@ -19,7 +19,8 @@ public class Clientstuff {
 
         new Thread(() -> {
             try {
-                serverSocket = new ServerSocket(50001);
+                if (serverSocket != null)
+                    serverSocket = new ServerSocket(50001);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -32,9 +33,8 @@ public class Clientstuff {
             }
             //stream = null;
             try {
-                //if (socket != null) {
+                if (stream != null)
                     stream = new DataInputStream(socket.getInputStream());
-                //}
             } catch (IOException e) {
                 e.printStackTrace();
             }
