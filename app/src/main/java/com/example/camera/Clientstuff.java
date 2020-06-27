@@ -6,10 +6,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Clientstuff {
-    private static ServerSocket serverSocket;
-    private static Socket socket;
-    private static DataInputStream stream;
-    private String gotdata;
+    private static ServerSocket serverSocket = null;
+    private static Socket socket = null;
+    private static DataInputStream stream = null;
+    private static String gotdata = null;
 
     public String getGotdata() {
         return gotdata;
@@ -19,32 +19,38 @@ public class Clientstuff {
 
         new Thread(() -> {
             try {
-                if (serverSocket != null)
+                if (serverSocket == null) {
                     serverSocket = new ServerSocket(50001);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
             //socket = null;
             //gotdata = null;
             try {
-                socket = serverSocket.accept();
+                if (socket == null) {
+                    socket = serverSocket.accept();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
             //stream = null;
             try {
-                if (stream != null)
+                if (stream == null) {
                     stream = new DataInputStream(socket.getInputStream());
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
             try {
-                //if (stream != null) {
-                    //gotdata = stream.readUTF();
-                String inputLine;
                 while (true) {
-                    if (stream.available()>0)
-                    gotdata = stream.readUTF();
+                    if (stream.available()>0) {
+                        gotdata = stream.readUTF();
+                        GlobalClass.setTextReceived(gotdata);
+                    }
+
+
+
                 }
                 //}
             } catch (IOException e) {
