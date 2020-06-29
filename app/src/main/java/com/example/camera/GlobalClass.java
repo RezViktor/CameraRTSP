@@ -54,4 +54,54 @@ public class GlobalClass extends Application implements OnIntegerChangeListener{
     }
 
     public static String textReceived;
+
+    public static String getIpAddress() {
+        return ipAddress;
+    }
+
+    public static void setIpAddress(String ipAddress) {
+        GlobalClass.ipAddress = ipAddress;
+    }
+
+    public static String ipAddress;
+
+    public static String getFullIp() {
+        return fullIp;
+    }
+
+    public static void setFullIp(String fullIp) {
+        GlobalClass.fullIp = fullIp;
+    }
+
+    public static String fullIp;
+
+    public static String getMacCount() {
+        return macCount;
+    }
+
+    public static void setMacCount(String macCount) {
+        GlobalClass.macCount = macCount;
+    }
+
+    public static String macCount;
+
+    public static String getLine() {
+        return line;
+    }
+
+    public static void setLine(String line) {
+        GlobalClass.line = line;
+    }
+
+    public static String line;
+
+    public static boolean isIsRecordingActive() {
+        return isRecordingActive;
+    }
+
+    public static void setIsRecordingActive(boolean isRecordingActive) {
+        GlobalClass.isRecordingActive = isRecordingActive;
+    }
+
+    public static boolean isRecordingActive = false;
 }
