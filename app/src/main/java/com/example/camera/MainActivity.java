@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         serverstuff send = new serverstuff();
         EditText editText;
         editText = (EditText) findViewById(R.id.editText);
+        WebView webView;
 
         Button btnn = findViewById(R.id.button);
         btnn.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +178,11 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+        webView = (WebView) findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+
+        webView.loadUrl("file:///android_asset/index.html");
     }
     public void displaySnackbar (View view,String s)
     {
