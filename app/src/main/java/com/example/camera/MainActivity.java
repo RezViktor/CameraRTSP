@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     VideoView videoView;
     ImageButton play_button;
 
-    String videoURL = "https://www.radiantmediaplayer.com/media/big-buck-bunny-360p.mp4";
-
+//    String videoURL = "https://www.radiantmediaplayer.com/media/big-buck-bunny-360p.mp4";
+    String videoURL = "rtsp://192.168.55.152:8554/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,10 +179,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        webView = (WebView) findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
-
-        webView.loadUrl("file:///android_asset/index.html");
+//        webView = (WebView) findViewById(R.id.webView);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//
+//        webView.loadUrl("file:///android_asset/index.html");
     }
     public void displaySnackbar (View view,String s)
     {
