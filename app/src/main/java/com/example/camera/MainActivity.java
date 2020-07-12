@@ -6,8 +6,6 @@ import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.camera.R;
-import com.example.camera.camera;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -22,9 +20,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.media.MediaRecorder;
 import android.widget.VideoView;
 
 import java.io.IOException;
@@ -33,13 +29,11 @@ import static android.os.Environment.DIRECTORY_DCIM;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MediaRecorder camerra;
     ProgressDialog mDialog;
     VideoView videoView;
     ImageButton play_button;
 
-//    String videoURL = "https://www.radiantmediaplayer.com/media/big-buck-bunny-360p.mp4";
-    String videoURL = "rtsp://192.168.55.152:8554/";
+    String videoURL = "rtsp://192.168.43.240:8554/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,71 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
                 send.sendData();
                 Snackbar.make(v, GlobalClass.getLine(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        Button btnn2 = findViewById(R.id.button2);
-        btnn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    receive.startServer();
-                    Snackbar.make(v, "Socket created!", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Snackbar.make(v, "Creating socket failed!", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-            }
-        });
-        Button btnn3 = findViewById(R.id.button3);
-        btnn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, GlobalClass.getTextReceived(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        Button btnn4 = findViewById(R.id.button4);
-        btnn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(globalClass.isRecordingActive){
-                    try {
-                        c.stop();
-                    } catch (IllegalStateException e) {
-                        e.printStackTrace();
-                    }
-                    globalClass.setIsRecordingActive(false);
-                    Snackbar.make(v, "Record stopped", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-                else{
-                    try {
-                        //c.setAudioSource(MediaRecorder.AudioSource.MIC);
-//                        c.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-//                        c.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-//                        c.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-                        c.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-//            c.setOutputFile(pfd.getFileDescriptor());
-                        c.setOutputFile(DIRECTORY_DCIM+"/firs.mp4");
-                        c.prepare();
-                        c.start();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    globalClass.setIsRecordingActive(true);
-                    Snackbar.make(v, "Record started", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-            }
-        });
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -178,11 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-
-//        webView = (WebView) findViewById(R.id.webView);
-//        webView.getSettings().setJavaScriptEnabled(true);
-//
-//        webView.loadUrl("file:///android_asset/index.html");
     }
     public void displaySnackbar (View view,String s)
     {
